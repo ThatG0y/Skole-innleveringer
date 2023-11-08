@@ -1,0 +1,29 @@
+@startuml 4
+class Bok{
+    #forfatter : Forfatter
+    #forlag : str
+    #ISBNnummer : int
+    #tittel : int
+    #utgivelsesår : int
+    #baksidetekst : int
+}
+class Bokhandel{
+    #bøker : list[Bok]
+    +registrerBok(bok:Bok)
+}
+class Forfatter{
+    #bøker : list[Bok]
+}   
+class Fagbok{
+    #fagområde : str
+}
+class Skjønnlitteratur{
+    #sjanger : str
+}
+
+Fagbok -up-|> Bok
+Skjønnlitteratur -up-|> Bok
+Forfatter "1,2,..." *-left- "*" Bok
+Bok "many" -up-* "many" Bokhandel: registrerBok(Bok) >
+
+@enduml

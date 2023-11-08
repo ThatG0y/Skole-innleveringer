@@ -1,0 +1,42 @@
+@startuml 3
+class Trener{
+    spesialisering : str
+    lag : list[Lag]
+}
+class Lag{
+    medlemmer : list[Spiller | Trener]
+}
+class Lag2{
+    medlemmer : list[Spiller | Trener]
+}
+class Klubb{
+    lag : list[Lag]
+    spillere : list[Spiller]
+    trenere : list[Trener]
+}
+class Spillere{
+    spillere : list[Spiller]
+    lag : str
+}
+class Trenere{
+    trenere : list[Trener]
+}
+class Spiller{
+    posisjon : str
+}
+class Spiller2{
+    posisjon : str
+}
+
+Spiller <|-up-|> Lag
+Spiller2 <|-up-|> Lag2
+Spillere -up-|> Spiller
+Spillere -up-|> Spiller2
+Spillere .up. Klubb
+Trenere .up. Klubb
+Trenere -up-|> Trener
+Lag <|--|> Trener
+Lag2 <|--|> Trener
+Klubb <|-- Lag
+Klubb <|-- Lag2
+@enduml

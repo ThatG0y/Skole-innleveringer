@@ -1,0 +1,28 @@
+@startuml Bank
+class Bank{
+    kontoer: list[BankKonto]
+}
+class BankKonto{
+    eier : Eier
+    kontonummer : int
+    saldo : int = 0
+}
+class BSUKonto{
+    maksPengerInnskudd : int
+}
+class SpareKonto{
+    maksGangerUttak : int
+}
+class Eier{
+    fornavn : str
+    etternavn : str
+    tlfnummer : int
+}   
+
+SpareKonto -up-|> BankKonto
+BSUKonto -up-|> BankKonto
+BankKonto -up-* Bank
+Eier "1, 2,..." *-left-* "1" BankKonto
+
+
+@enduml

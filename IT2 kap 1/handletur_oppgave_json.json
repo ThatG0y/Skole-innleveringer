@@ -1,0 +1,7 @@
+{
+  "Rema1000": { "salat": 12, "fisk": 99, "melk": 12, "brod": 12 },
+  "Meny": { "salat": 22, "fisk": 60, "melk": 18, "brod": 21 },
+  "Kiwi": { "salat": 8, "fisk": 120, "melk": 10, "brod": 19 },
+  "Spar": { "salat": 18, "fisk": 40, "melk": 30, "brod": 59 },
+  "Joker": { "salat": 15, "fisk": 200, "melk": 40, "brod": 9 }
+}
