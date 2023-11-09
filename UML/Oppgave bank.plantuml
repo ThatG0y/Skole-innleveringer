@@ -8,22 +8,23 @@ class BankKonto{
     +visEierInfo()
     +visKontoInfo()
     +settInnPenger(penger : float) -> bool
-    #transaksjonFunksjonalitet(penger : float) -> bool
     +taUtPenger(penger : float) -> bool
+    #transaksjonFunksjonalitet(penger : float) -> bool
 }
 class BSUKonto{
     -maksPengerInnskudd : float
-    +gjennståendeInskudd()
+    +gjennværendeInskudd()
 }
 class SpareKonto{
     -maksGangerUttak : float
-    +gjennståendeUttak()
+    +gjennværendeUttak()
 }
 class Eier{
     #fornavn : str
     #etternavn : str
     #telefonnummer : int
     +visInfo()
+    +fulltNavn()
 }   
 
 SpareKonto -up-|> BankKonto

@@ -8,15 +8,10 @@ class Eier:
         return f"""Eier:
     Navn            : {self.fulltNavn()} 
     Telefonnummer   : {self._telefonnummer}
-
-        """
+    """
 
     def fulltNavn(self) -> str:
         return f"{self._fornavn} {self._etternavn}"
 
-    def telefonnummer(self) -> str:
-        return f"{self._telefonnummer}"
-
-
-if __name__ == "__main__":
-    pass
+    def visInfo(self) -> str:
+        return self

@@ -3,35 +3,37 @@ from modeller.bankkontoer.bankkonto import BankKonto
 
 
 class SpareKonto(BankKonto):
+    __MAKS_ANTALL_ÅRLIGE_UTTAK = 10
+
     def __init__(
         self,
         eier: Eier,
         kontonummer: str,
-        maks_antall_årlige_uttak: int,
         saldo: float = 0,
     ) -> None:
         super().__init__(eier, kontonummer, saldo)
-        self._gjennværende_antall_uttak = maks_antall_årlige_uttak  # koden reduserer senere gjennværende_årlige_uttak, fullt utviklet kode burde legge til flere antall uttak 1 gang i året.
+        self._gjennværendeAntallUttak = (
+            self.__MAKS_ANTALL_ÅRLIGE_UTTAK
+        )  # koden reduserer senere gjennværende årlige uttak, fullt utviklet kode burde legge til flere antall uttak 1 gang i året.
 
     @property
-    def gjennværende_antall_uttak(self):
-        return self._gjennværende_antall_uttak
+    def gjennværendeAntallUttak(self):
+        return self._gjennværendeAntallUttak
 
     def __str__(self) -> str:
         print("Spare", end="")
         return super().__str__()
 
-    def ta_ut(self, penger: int) -> bool:
-        if self._gjennværende_antall_uttak < 1:
+    def gjennværendeUttak(self) -> None:
+        print(f"Gjennværende innskudd : {self._gjennværendeAntallUttak}")
+
+    def taUtPenger(self, penger: float) -> bool:
+        if self._gjennværendeAntallUttak < 1:
             print(f"Du prøver å ta ut {penger}")
-            print("Du har ingen gjennstående uttak for denne terminen")
+            print("Du har ingen gjennværennde uttak for denne terminen")
             print(f"Saldoen er {self._saldo}")
             return False
-        if super().ta_ut(penger):
-            self._gjennværende_antall_uttak -= 1
+        if super().taUtPenger(penger):
+            self._gjennværendeAntallUttak -= 1
             return True
         return False
-
-
-if __name__ == "__main__":
-    pass

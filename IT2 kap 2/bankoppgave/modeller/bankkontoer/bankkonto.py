@@ -2,12 +2,12 @@ from modeller.eier import Eier
 
 
 class BankKonto:
-    __MIN_SALDO = -5000
+    _min_saldo = -5000
 
     def __init__(self, eier: Eier, kontonummer: str, saldo: float = 0) -> None:
         self._eier = eier
         self._kontonummer = kontonummer
-        if saldo < self.__MIN_SALDO:
+        if saldo < self._min_saldo:
             raise ValueError("For lavt saldobeløp!")
         else:
             self._saldo = saldo
@@ -19,8 +19,11 @@ class BankKonto:
     Eier        : {self._eier.fulltNavn()}
     Kontonummer : {self._kontonummer}
     Saldo       : {self._saldo:.2f}
+    """
 
-        """
+    @property
+    def min_saldo(self):
+        return self._min_saldo
 
     @property
     def eier(self):
@@ -41,12 +44,18 @@ class BankKonto:
     #     else:
     #         self._saldo = ny_saldo
 
-    def sett_inn(self, penger: int) -> bool:
+    def visEierInfo(self) -> None:
+        print(self._eier)
+
+    def visKontoInfo(self) -> None:
+        print(self)
+
+    def settInnPenger(self, penger: float) -> bool:
         print(f"Du satt inn {penger}")
         return self._transaksjon_funksjonalitet(penger)
 
-    def ta_ut(self, penger: int) -> bool:
-        if self._saldo - self.__MIN_SALDO > penger:
+    def taUtPenger(self, penger: float) -> bool:
+        if self._saldo - self._min_saldo > penger:
             print(f"Du tok ut {penger}")
             return self._transaksjon_funksjonalitet(-penger)
         print(f"Du prøver å ta ut {penger}")
@@ -55,12 +64,8 @@ class BankKonto:
         print("")
         return False
 
-    def _transaksjon_funksjonalitet(self, penger: int) -> bool:
+    def _transaksjon_funksjonalitet(self, penger: float) -> bool:
         self._saldo += penger
         print(f"Ny saldo er {self._saldo}")
         print("")
         return True
-
-
-if __name__ == "__main__":
-    pass
