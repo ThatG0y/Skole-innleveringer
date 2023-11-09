@@ -25,7 +25,8 @@ class SpareKonto(BankKonto):
         return super().__str__()
 
     def gjennværendeUttak(self) -> None:
-        print(f"Gjennværende innskudd : {self._gjennværendeAntallUttak}")
+        """Viser antallet pengeuttak brukeren har til gode."""
+        print(f"Gjennværende uttak : {self._gjennværendeAntallUttak}")
 
     def taUtPenger(self, penger: float) -> bool:
         if self._gjennværendeAntallUttak < 1:

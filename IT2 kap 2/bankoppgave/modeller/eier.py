@@ -11,7 +11,9 @@ class Eier:
     """
 
     def fulltNavn(self) -> str:
+        """Viser eierens fulle navn."""
         return f"{self._fornavn} {self._etternavn}"
 
     def visInfo(self) -> str:
+        """Viser eierens fornavn, etternavn og telefonnummer."""
         return self

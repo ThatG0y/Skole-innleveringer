@@ -20,6 +20,7 @@ class BSUKonto(BankKonto):
         return super().__str__()
 
     def gjennværendeInnskudd(self) -> None:
+        """Viser mengden kroner brukeren har til gode å sette inn."""
         print(f"Gjennværende innskudd (kr) : {self._gjennværendeSaldo}")
 
     def settInnPenger(self, penger: float) -> bool:

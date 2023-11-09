@@ -45,16 +45,42 @@ class BankKonto:
     #         self._saldo = ny_saldo
 
     def visEierInfo(self) -> None:
+        """Viser relevant informasjon om eieren av bankkontoen"""
         print(self._eier)
 
     def visKontoInfo(self) -> None:
+        """Viser relevant informasjon om bankkontoen"""
         print(self)
 
     def settInnPenger(self, penger: float) -> bool:
+        """Lar brukeren sette inn et beløp penger på bankkontoens saldo.
+
+        Parameters
+        ----------
+        penger : float
+            Antallet kroner brukeren vil sette inn.
+
+        Returns
+        -------
+        bool
+            Returnerer True hvis transaksjonen var en suksess, returnerer ellers False.
+        """
         print(f"Du satt inn {penger}")
         return self._transaksjon_funksjonalitet(penger)
 
     def taUtPenger(self, penger: float) -> bool:
+        """Lar brukeren trekke fra et beløp penger fra bankkontoens saldo:
+
+        Parameters
+        ----------
+        penger : float
+            Antallet kroner brukeren vil trekke ut.
+
+        Returns
+        -------
+        bool
+            Returnerer True hvis transaksjonen var en suksess, returnerer ellers False.
+        """
         if self._saldo - self._min_saldo > penger:
             print(f"Du tok ut {penger}")
             return self._transaksjon_funksjonalitet(-penger)
@@ -65,6 +91,18 @@ class BankKonto:
         return False
 
     def _transaksjon_funksjonalitet(self, penger: float) -> bool:
+        """Hjelpefunksjon for transaksjonsrelaterte metoder. Endrer beløpet på bankkontoens saldo.
+
+        Parameters
+        ----------
+        penger : float
+            Mengden penger som skal legges til / trekkes fra.
+
+        Returns
+        -------
+        bool
+            Returnerer True siden transaksjonen var en suksess.
+        """
         self._saldo += penger
         print(f"Ny saldo er {self._saldo}")
         print("")
