@@ -8,7 +8,7 @@ class Bok{
     +baksidetekst : str
 }
 class Bokhandel{
-    #bokassortement : list[Bok]
+    +bokassortement : list[Bok]
     +registrerBok(bok:Bok)
 }
 class Forfatter{

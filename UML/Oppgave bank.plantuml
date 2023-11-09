@@ -1,27 +1,33 @@
 @startuml Bank
-class Bank{
-    kontoer: list[BankKonto]
-}
+
 class BankKonto{
-    eier : Eier
-    kontonummer : int
-    saldo : int = 0
+    #minimumSaldo : float
+    #eier : Eier
+    #kontonummer : str
+    #saldo : float = 0
+    +visEierInfo()
+    +visKontoInfo()
+    +settInnPenger(penger : float) -> bool
+    #transaksjonFunksjonalitet(penger : float) -> bool
+    +taUtPenger(penger : float) -> bool
 }
 class BSUKonto{
-    maksPengerInnskudd : int
+    -maksPengerInnskudd : float
+    +gjennståendeInskudd()
 }
 class SpareKonto{
-    maksGangerUttak : int
+    -maksGangerUttak : float
+    +gjennståendeUttak()
 }
 class Eier{
-    fornavn : str
-    etternavn : str
-    tlfnummer : int
+    #fornavn : str
+    #etternavn : str
+    #telefonnummer : int
+    +visInfo()
 }   
 
 SpareKonto -up-|> BankKonto
 BSUKonto -up-|> BankKonto
-BankKonto -up-* Bank
 Eier "1, 2,..." *-left-* "1" BankKonto
 
 
