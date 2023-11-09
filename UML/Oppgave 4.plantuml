@@ -1,18 +1,18 @@
 @startuml 4
 class Bok{
-    +forfatter : Forfatter
+    +forfatter : list[Forfatter]
     +forlag : str
     +ISBNnummer : int
-    +tittel : int
+    +tittel : str
     +utgivelsesår : int
-    +baksidetekst : int
+    +baksidetekst : str
 }
 class Bokhandel{
-    #bøker : list[Bok]
+    #bokassortement : list[Bok]
     +registrerBok(bok:Bok)
 }
 class Forfatter{
-    +bøker : list[Bok]
+    +skrevne_bøker : list[Bok]
 }   
 class Fagbok{
     +fagområde : str
