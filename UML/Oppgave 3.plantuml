@@ -6,37 +6,22 @@ class Trener{
 class Lag{
     medlemmer : list[Spiller | Trener]
 }
-class Lag2{
-    medlemmer : list[Spiller | Trener]
-}
+
 class Klubb{
     lag : list[Lag]
     spillere : list[Spiller]
     trenere : list[Trener]
 }
-class Spillere{
-    spillere : list[Spiller]
-    lag : str
-}
-class Trenere{
-    trenere : list[Trener]
-}
+
 class Spiller{
     posisjon : str
-}
-class Spiller2{
-    posisjon : str
+    lag : str
 }
 
-Spiller <|-up-|> Lag
-Spiller2 <|-up-|> Lag2
-Spillere -up-|> Spiller
-Spillere -up-|> Spiller2
-Spillere .up. Klubb
-Trenere .up. Klubb
-Trenere -up-|> Trener
-Lag <|--|> Trener
-Lag2 <|--|> Trener
-Klubb <|-- Lag
-Klubb <|-- Lag2
+Lag "1" -up-* "many" Klubb
+Lag "many" *-left- "many" Trener
+Lag "many" *-right- "1" Spiller
+Trener "1" -up-* "many" Klubb
+Spiller "1" -up-* "many" Klubb
+
 @enduml
