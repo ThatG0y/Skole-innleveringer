@@ -2,9 +2,32 @@ from modeller.eier import Eier
 
 
 class BankKonto:
+    """En klasse som representerer en bankkonto i et banksystem.
+
+    Attributes
+    ----------
+    eier : Eier
+        Et Eier-objekt som inneholder informasjon om eieren.
+    kontonummer : str
+        Bankkontoens kontonummer
+    saldo : float = 0
+        Bankkontoens saldo. Satt til 0 by default for at kontoen skal genereres uten penger på saldoen.
+    """
+
     _min_saldo = -5000
 
     def __init__(self, eier: Eier, kontonummer: str, saldo: float = 0) -> None:
+        """Konstruerer tilstanden til bankkonto-objektet.
+
+        Parameters
+        ----------
+        eier : Eier
+            Et Eier-objekt som inneholder informasjon om eieren.
+        kontonummer : str
+            Bankkontoens kontonummer
+        saldo : float = 0
+            Bankkontoens saldo. Satt til 0 by default for at kontoen skal genereres uten penger på saldoen.
+        """
         self._eier = eier
         self._kontonummer = kontonummer
         if saldo < self._min_saldo:

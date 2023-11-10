@@ -3,6 +3,22 @@ from modeller.bankkontoer.bankkonto import BankKonto
 
 
 class SpareKonto(BankKonto):
+    """En underklasse av BankKonto. Klassen representerer en sparekonto i et banksystem.
+
+    Attributes
+    ----------
+    maksAntallÅrligeUttak : int
+        Det maksimale antallet uttak som kontoen lar brukeren ta ut fra kontoen.
+    gjennværendeAntallUttak : int
+        Det gjennværende antallet uttak som kontoen lar brukeren ta ut fra kontoen.
+    eier : Eier
+        Et Eier-objekt som inneholder informasjon om eieren.
+    kontonummer : str
+        Bankkontoens kontonummer
+    saldo : float = 0
+        Bankkontoens saldo. Satt til 0 by default for at kontoen skal genereres uten penger på saldoen.
+    """
+
     __MAKS_ANTALL_ÅRLIGE_UTTAK = 10
 
     def __init__(
@@ -11,6 +27,17 @@ class SpareKonto(BankKonto):
         kontonummer: str,
         saldo: float = 0,
     ) -> None:
+        """Konstruerer tilstanden til sparekonto-objektet.
+
+        Parameters
+        ----------
+        eier : Eier
+            Et Eier-objekt som inneholder informasjon om eieren.
+        kontonummer : str
+            Bankkontoens kontonummer
+        saldo : float = 0
+            Bankkontoens saldo. Satt til 0 by default for at kontoen skal genereres uten penger på saldoen.
+        """
         super().__init__(eier, kontonummer, saldo)
         self._gjennværendeAntallUttak = (
             self.__MAKS_ANTALL_ÅRLIGE_UTTAK
