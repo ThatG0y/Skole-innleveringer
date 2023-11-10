@@ -12,6 +12,8 @@ class BankKonto:
         Bankkontoens kontonummer
     saldo : float = 0
         Bankkontoens saldo. Satt til 0 by default for at kontoen skal genereres uten penger på saldoen.
+    min_saldo : float
+        En negativ minimumsverdi som saldoen kan synke til.
     """
 
     _min_saldo = -5000

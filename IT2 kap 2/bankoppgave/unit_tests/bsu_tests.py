@@ -22,7 +22,7 @@ def unit_tests() -> None:
     konto.settInnPenger(2501)
     assert (
         konto.saldo == -1000.0
-    ), "funksjonen 'sett_inn()' trekker ikke fra saldoen riktig i henhold til "
+    ), "funksjonen 'sett_inn()' trekker ikke fra saldoen riktig i henhold til utvidet funksjonalitet"
 
 
 if __name__ == "__main__":
