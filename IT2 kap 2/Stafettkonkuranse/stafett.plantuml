@@ -1,0 +1,36 @@
+@startuml Stafett
+class Idrettsklubb{
+#medlemslisteJente : list[Jente]
+#medlemslisteGutt : list[Gutt]
+#idrettslag : list[Idrettslag]
++spektatorer : list[Gutt | Jente]
+#settUnntak()
+#opprettIdrettslag() -> Idrettslag
++finnRaskestLag()
++visKlubbInfo()
+}
+class Idrettslag{
+#medlemslisteJente : list[Jente]
+#medlemslisteGutt : list[Gutt]
++beregnTotalRundetid()
++visLaginfo()
+}
+class Medlem{
+#navn : str
+}
+class Jente{
+#rundetid : float = randint(11.5, 13.5)
+}
+class Gutt{
+#rundetid : float = randint(11, 13)
+    
+}
+Gutt "1" --* "2" Idrettslag
+Jente "1" --* "2" Idrettslag
+Gutt "1" --* "5" Idrettsklubb
+Jente "1" --* "5" Idrettsklubb
+Idrettsklubb "2" -up-* "1" Idrettslag : opprettIdrettslag() >
+Gutt -right-|> Medlem
+Jente -left-|> Medlem
+
+@enduml
