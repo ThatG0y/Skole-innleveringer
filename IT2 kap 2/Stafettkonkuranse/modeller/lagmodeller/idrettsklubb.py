@@ -43,10 +43,11 @@ class Idrettsklubb:
         """Beregner laget med lavest total rundetid"""
         lagDict = {lag.lagnavn: lag.beregnTotalRundetid() for lag in self.idrettslag}
         print(
-            f"Det raskeste laget er derfor Lag {max(lagDict, key=lagDict.get)} med den totale rundetiden {max(lagDict.values())}\n"
+            f"Det raskeste laget er derfor Lag {min(lagDict, key=lagDict.get)} med den totale rundetiden {min(lagDict.values())} sekunder\n"
         )
 
     def visKlubbInfo(self) -> None:
+        """Viser klubbens lag, spektatorer, medlemmer og rundetider"""
         for lag in self.idrettslag:
             lag.visLagInfo()
         print("Spektatorer består av følgende medlemmer:")
