@@ -5,4 +5,4 @@ import random as rd
 class Gutt(Medlem):
     def __init__(self, navn: str) -> None:
         super().__init__(navn)
-        self.rundetid = rd.randint(11, 13)
+        self.rundetid = rd.randint(110, 130) / 10
