@@ -16,3 +16,8 @@ class Medlem:
             Lagmedlemets navn
         """
         self.navn = navn
+
+    def __str__(self) -> str:
+        return f"""Lagmedlem:
+    Navn        : {self.navn.strip().title()}
+    """

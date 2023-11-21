@@ -23,3 +23,7 @@ class Gutt(Medlem):
         """
         super().__init__(navn)
         self.rundetid = rd.randint(110, 130) / 10
+
+    def __str__(self) -> str:
+        print("Gutt", end="-")
+        return super().__str__()
