@@ -7,11 +7,21 @@ from modeller.medlemsmodeller.jente import Jente
 
 
 def unitTestsMedlem() -> None:
-    pass
+    kar = Gutt("Jens")
+    karinne = Jente("Jenny")
+
+    assert kar.navn == "Jens", "Navn blir ikke initialisert riktig for Gutt klassen"
+    assert (
+        karinne.navn == "Jenny"
+    ), "Navn blir ikke initialisert riktig for Jente klassen"
+
+    assert 11 <= kar.rundetid <= 13, "Gutt klassen genererer feil rundetid"
+    assert 11.5 <= karinne.rundetid <= 13.5, "Jente klassen genererer feil rundetid"
 
 
 def unitTestsLag() -> None:
-    lag = Idrettslag()
+    medlemsliste = [Jente(j[0]), Jente(j[1]), Gutt(g[0]), Gutt(g[1])]
+    lag = Idrettslag("A", [*medlemsliste[:2]], [*medlemsliste[2:]])
 
 
 def unitTestsKlubb() -> None:
@@ -23,11 +33,3 @@ def unitTests() -> None:
     unitTestsMedlem()
     unitTestsLag()
     unitTestsKlubb()
-
-
-def main() -> None:
-    unitTests()
-
-
-if __name__ == "__main__":
-    main()

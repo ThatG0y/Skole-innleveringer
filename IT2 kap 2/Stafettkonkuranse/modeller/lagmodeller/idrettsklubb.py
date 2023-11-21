@@ -91,7 +91,7 @@ class Idrettsklubb:
         """Beregner laget med lavest total rundetid"""
         lagDict = {lag.lagnavn: lag.beregnTotalRundetid() for lag in self._idrettslag}
         print(
-            f"Det raskeste laget er derfor Lag {min(lagDict, key=lagDict.get):.1f} med den totale rundetiden {min(lagDict.values())} sekunder\n"
+            f"Det raskeste laget er derfor Lag {min(lagDict, key=lagDict.get)} med den totale rundetiden {min(lagDict.values()):.1f} sekunder\n"
         )
 
     def visKlubbInfo(self) -> None:
