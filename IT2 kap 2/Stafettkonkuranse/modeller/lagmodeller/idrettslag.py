@@ -30,12 +30,12 @@ class Idrettslag:
             En liste med mannlige lagmedlemmer
         """
         self.lagnavn = lagnavn
-        self.medlemslisteJente = medlemslisteJente
-        self.medlemslisteGutt = medlemslisteGutt
+        self._medlemslisteJente = medlemslisteJente
+        self._medlemslisteGutt = medlemslisteGutt
 
     def __str__(self) -> str:
         return f"""Idrettslag {self.lagnavn}:
-    Medlemsliste    : {sorted([medlem.navn for medlem in [*self.medlemslisteJente + self.medlemslisteGutt]])}    
+    Medlemsliste    : {sorted([medlem.navn for medlem in [*self._medlemslisteJente + self._medlemslisteGutt]])}    
     """
 
     def beregnTotalRundetid(self) -> float:
@@ -46,19 +46,21 @@ class Idrettslag:
         float
             Den totale rundetiden til idrettslaget
         """
-        totalMedlemsliste = self.medlemslisteGutt + self.medlemslisteJente
+        totalMedlemsliste = self._medlemslisteGutt + self._medlemslisteJente
         totalRundetid = 0
         for medlem in totalMedlemsliste:
             print(f"{medlem.navn} løper 100 m på {medlem.rundetid} sekunder")
             totalRundetid += medlem.rundetid
         print("")
-        print(f"Lag {self.lagnavn} løper 4x100 m på {totalRundetid} sekunder tilsammen")
+        print(
+            f"Lag {self.lagnavn} løper 4x100 m på {totalRundetid:.1f} sekunder tilsammen"
+        )
         print("")
         return totalRundetid
 
     def visLagInfo(self) -> None:
         """Viser lagets tilstand"""
-        totalMedlemsListe = self.medlemslisteJente + self.medlemslisteGutt
+        totalMedlemsListe = self._medlemslisteJente + self._medlemslisteGutt
         print(f"Lag {self.lagnavn} består av følgende medlemmer:")
         for medlem in totalMedlemsListe:
             print(f"{medlem.navn:10} : {medlem.rundetid:5} sekunder")

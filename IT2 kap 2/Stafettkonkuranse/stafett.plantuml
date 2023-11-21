@@ -3,7 +3,7 @@ class Idrettsklubb{
 #medlemslisteJente : list[Jente]
 #medlemslisteGutt : list[Gutt]
 #idrettslag : list[Idrettslag]
-+spektatorer : list[Gutt | Jente]
+#spektatorer : list[Gutt | Jente]
 #settUnntak()
 #opprettIdrettslag() -> Idrettslag
 +finnRaskestLag()
@@ -16,13 +16,13 @@ class Idrettslag{
 +visLaginfo()
 }
 class Medlem{
-#navn : str
++navn : str
 }
 class Jente{
-#rundetid : float = randint(11.5, 13.5)
++rundetid : float = randint(11.5, 13.5)
 }
 class Gutt{
-#rundetid : float = randint(11, 13)
++rundetid : float = randint(11, 13)
     
 }
 Gutt "1" --* "2" Idrettslag

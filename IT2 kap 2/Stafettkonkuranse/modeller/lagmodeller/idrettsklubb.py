@@ -22,23 +22,23 @@ class Idrettsklubb:
 
     def __init__(self) -> None:
         """Konstruerer tilstanden til klubb-objektet."""
-        self.medlemslisteJenter = [Jente(j[_]) for _ in range(5)]
-        self.medlemslisteGutter = [Gutt(g[_]) for _ in range(5)]
-        self.spektatorer = []
-        self.idrettslag = self.opprettIdrettslag()
+        self._medlemslisteJenter = [Jente(j[_]) for _ in range(5)]
+        self._medlemslisteGutter = [Gutt(g[_]) for _ in range(5)]
+        self._spektatorer = []
+        self._idrettslag = self._opprettIdrettslag()
 
     def __str__(self) -> str:
         print(f"Idrettsklubb:")
-        print(f"    Lagliste        : {[lag.lagnavn for lag in self.idrettslag]}")
+        print(f"    Lagliste        : {[lag.lagnavn for lag in self._idrettslag]}")
         print("")
-        for lag in self.idrettslag:
+        for lag in self._idrettslag:
             print(lag)
         print(
-            f"Spektatorer         : {[spektator.navn for spektator in self.spektatorer]}"
+            f"Spektatorer         : {[spektator.navn for spektator in self._spektatorer]}"
         )
         return ""
 
-    def opprettSpektatorer(
+    def _opprettSpektatorer(
         self, medlemslisteJenter: list[Jente], medlemslisteGutter: list[Gutt]
     ) -> list[list[Jente], list[Gutt]]:
         """Oppretter en liste med spektatorer av overflødige klubbmedlemmer
@@ -55,12 +55,12 @@ class Idrettsklubb:
         list[list[Jente], list[Gutt]]
             En oppdatert medlemsliste som ikke inneholder spekatorene
         """
-        self.spektatorer.append(medlemslisteJenter.pop(rd.randint(0, 4)))
-        self.spektatorer.append(medlemslisteGutter.pop(rd.randint(0, 4)))
+        self._spektatorer.append(medlemslisteJenter.pop(rd.randint(0, 4)))
+        self._spektatorer.append(medlemslisteGutter.pop(rd.randint(0, 4)))
 
         return [medlemslisteJenter, medlemslisteGutter]
 
-    def opprettIdrettslag(self) -> list[Idrettslag, Idrettslag]:
+    def _opprettIdrettslag(self) -> list[Idrettslag, Idrettslag]:
         """Oppretter klubbens idrettslag
 
         Returns
@@ -69,8 +69,8 @@ class Idrettsklubb:
             Returnerer klubbens to idrettslag
 
         """
-        medlemslisteJenter, medlemslisteGutter = self.opprettSpektatorer(
-            self.medlemslisteJenter[:], self.medlemslisteGutter[:]
+        medlemslisteJenter, medlemslisteGutter = self._opprettSpektatorer(
+            self._medlemslisteJenter[:], self._medlemslisteGutter[:]
         )
         medlemslisteJenter[rd.randint(0, len(medlemslisteJenter) - 1)].rundetid = 10
         medlemslisteGutter[rd.randint(0, len(medlemslisteGutter) - 1)].rundetid = 10
@@ -89,16 +89,16 @@ class Idrettsklubb:
 
     def finnRaskestLag(self) -> None:
         """Beregner laget med lavest total rundetid"""
-        lagDict = {lag.lagnavn: lag.beregnTotalRundetid() for lag in self.idrettslag}
+        lagDict = {lag.lagnavn: lag.beregnTotalRundetid() for lag in self._idrettslag}
         print(
-            f"Det raskeste laget er derfor Lag {min(lagDict, key=lagDict.get)} med den totale rundetiden {min(lagDict.values())} sekunder\n"
+            f"Det raskeste laget er derfor Lag {min(lagDict, key=lagDict.get):.1f} med den totale rundetiden {min(lagDict.values())} sekunder\n"
         )
 
     def visKlubbInfo(self) -> None:
         """Viser klubbens lag, spektatorer, medlemmer og rundetider"""
-        for lag in self.idrettslag:
+        for lag in self._idrettslag:
             lag.visLagInfo()
         print("Spektatorer består av følgende medlemmer:")
-        for spektator in self.spektatorer:
+        for spektator in self._spektatorer:
             print(spektator.navn)
         print("")
