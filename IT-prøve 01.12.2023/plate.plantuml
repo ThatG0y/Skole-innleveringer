@@ -41,9 +41,9 @@ class Eier{
 }
 LPAlbum -up-|> Platealbum
 CDAlbum -up-|> Platealbum
-Platealbum "1" -up-* "many" Platesamling: registrerAlbum(Platealbum) >
+Platealbum "1" -up-o "many" Platesamling: registrerAlbum(Platealbum) >
 Eier "many" -* "1" Platesamling
-Artist "many" -left-* "1" Platealbum
-Artist "many" -left-* Platesamling: registrerArtist(Artist) >
+Artist "many" -left-o "1" Platealbum
+Artist "many" -left-o Platesamling: registrerArtist(Artist) >
 
 @enduml
