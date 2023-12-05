@@ -19,8 +19,7 @@ class Platealbum{
 
 class Artist{
     #artistnavn : str
-    #album : list[Platealbum]
-    +visAlbum()
+    +visInfo()
 }
 class LPAlbum{
     #platetype : "LP"
