@@ -10,7 +10,7 @@ fig, ax = plt.subplots(figsize=(10, 5))  # Angir dimensjoner for figure-objektet
 # x = data.loc[titles[0]].values
 # y = list(map(int, data.loc[titles[1]].values))
 
-x_mer = "Over 1000"
+x_mer = "Over 1000 m"
 y_mer = sum(list(map(int, data.loc[titles[1]].values))[14:])
 
 data = data.drop(
