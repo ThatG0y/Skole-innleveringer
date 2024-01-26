@@ -38,16 +38,23 @@ def main() -> None:
     for oppgave in oppgave_oversikt:
         if oppgave["completed"]:
             bruker_score[oppgave["userId"]] += 1
-    flest_poeng_bruker = max(bruker_score, key=bruker_score.get)
+    flest_poeng = bruker_score[max(bruker_score, key=bruker_score.get)]
+    flest_poeng_bruker = []
+    for bruker in bruker_score.items():
+        if bruker[1] == flest_poeng:
+            flest_poeng_bruker.append(bruker[0])
     print(
-        f"Brukeren med mest score er 'bruker {flest_poeng_bruker}' med {bruker_score[flest_poeng_bruker]} poeng"
+        f"Brukeren(e) med mest score er 'bruker(e) {flest_poeng_bruker}' med {flest_poeng} poeng"
     )
 
     # subtask e
-
-    minst_poeng_bruker = min(bruker_score, key=bruker_score.get)
+    minst_poeng = bruker_score[min(bruker_score, key=bruker_score.get)]
+    minst_poeng_bruker = []
+    for bruker in bruker_score.items():
+        if bruker[1] == minst_poeng:
+            minst_poeng_bruker.append(bruker[0])
     print(
-        f"Brukeren med mest score er 'bruker {minst_poeng_bruker}' med {bruker_score[minst_poeng_bruker]} poeng"
+        f"Brukeren(e) med mest score er 'bruker(e) {minst_poeng_bruker}' med {minst_poeng} poeng"
     )
 
 
