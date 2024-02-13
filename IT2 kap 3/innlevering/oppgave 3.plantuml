@@ -1,0 +1,20 @@
+@startuml oppgave 3 todo-tasks
+class ToDoListApp{
+    #toDoList:ToDoList
+    -create_gui()
+}
+class ToDoList{
+    #toDoTasks : list[ToDoTask]
+    +Tasks() -> toDoTasks
+}
+class ToDoTask{
+    +owner : int
+    +id : int
+    +title : str
+    +completed : bool
+}
+
+ ToDoTask "0*" -up-* "1" ToDoList
+ ToDoList "1" -up-* "1" ToDoListApp
+@enduml
+

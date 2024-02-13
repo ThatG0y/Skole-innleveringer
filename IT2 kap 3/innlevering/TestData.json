@@ -1,0 +1,37 @@
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "task med string id",
+    "completed": false,
+    "estimat": ""
+  },
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "task med string id",
+    "completed": false,
+    "estimat": ""
+  },
+  {
+    "userId": 1.0,
+    "id": 2,
+    "title": "quis ut nam facilis et officia qui",
+    "completed": false,
+    "estimat": "1d"
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "fugiat veniam minus",
+    "completed": false,
+    "estimat": ""
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "task     med    unødvendig    blanks     ",
+    "completed": true,
+    "estimat": "3d"
+  }
+]
