@@ -1,36 +1,39 @@
 import pygame as pg
-import math as m
-import random as rd
-from pygame.locals import K_UP, K_DOWN, K_LEFT, K_RIGHT
+from pygame.locals import K_UP, K_DOWN, K_LEFT, K_RIGHT, K_w, K_a, K_s, K_d
 from classes.bokser.boks import Boks
 from classes.bokser.spiller import Spiller
 from classes.bokser.matbit import Matbit
 from classes.bokser.hinder import Hinder
-
-# Oppretter et vindu der vi skal "tegne" innholdet vårt
-VINDU_BREDDE = 500
-VINDU_HOYDE = 500
-BILDER_PER_SEKUND = 24
+from classes.misc.counter import Counter
 
 
-# Initialiserer/starter pygame
 class App:
+
+    VINDU_BREDDE = 800  # størrelsen til spill-vinduet
+    VINDU_HOYDE = 500
+    BILDER_PER_SEKUND = 24  # bildefrekvens
+
     def __init__(self) -> None:
+        """Konstruktør"""
         pg.init()
-        self.vindu = pg.display.set_mode((VINDU_BREDDE, VINDU_HOYDE))
         pg.display.set_caption("PacTroll")
+
+        self.vindu = pg.display.set_mode((self.VINDU_BREDDE, self.VINDU_HOYDE))
         self.clock = pg.time.Clock()
         self.fortsett = True
+
+        # generer nødvendige objekter
         self.spiller = Spiller(250, 250, self.vindu)
         self.matbiter = []
         for _ in range(3):
-            self.matbiter.append(self.kokkeler_matbit(self.spiller, *self.matbiter))
+            self.matbiter.append(self.lag_matbit(self.spiller, *self.matbiter))
         self.hinder = []
-        self.counter = 0
+        self.counter = Counter(self.vindu)
 
-    def kokkeler_matbit(self, *args):
+    def lag_matbit(self, *args) -> Matbit:
+        """Metode for å lage et nytt Matbit-objekt"""
         overlapp = True
-        while overlapp:
+        while overlapp:  # logikk for å ikke få overlappende figurer
             overlapp = False
             matbit = Matbit(self.vindu)
             for boks in args:
@@ -40,20 +43,23 @@ class App:
         return matbit
 
     def sjekk_events(self):
+        """Metode for å sjekke etter utløste events"""
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.fortsett = False
         self.trykkede_taster = pg.key.get_pressed()
 
     def oppdater_tilstand(self):
-        if self.trykkede_taster[K_UP]:
-            self.spiller.retning = K_UP
-        elif self.trykkede_taster[K_DOWN]:
-            self.spiller.retning = K_DOWN
-        elif self.trykkede_taster[K_RIGHT]:
-            self.spiller.retning = K_RIGHT
-        elif self.trykkede_taster[K_LEFT]:
-            self.spiller.retning = K_LEFT
+        """Metode for å endre spillets tilstand"""
+        # endrer retningen til spilleren utifra tastetrykk
+        if self.trykkede_taster[K_UP] or self.trykkede_taster[K_w]:
+            self.spiller.endre_retning(K_UP)
+        elif self.trykkede_taster[K_DOWN] or self.trykkede_taster[K_s]:
+            self.spiller.endre_retning(K_DOWN)
+        elif self.trykkede_taster[K_RIGHT] or self.trykkede_taster[K_d]:
+            self.spiller.endre_retning(K_RIGHT)
+        elif self.trykkede_taster[K_LEFT] or self.trykkede_taster[K_a]:
+            self.spiller.endre_retning(K_LEFT)
 
         self.spiller.gå_retning()
 
@@ -63,45 +69,45 @@ class App:
             if self.spiller.sjekk_overlapp(matbit):
                 self.hinder.append(Hinder(self.vindu, self.matbiter.pop(i)))
                 self.matbiter.append(
-                    self.kokkeler_matbit(self.spiller, *self.matbiter, *self.hinder)
+                    self.lag_matbit(self.spiller, *self.matbiter, *self.hinder)
                 )
-                self.counter += 1
+                self.counter.value += 1
+                self.spiller.øk_hastighet()
 
-        for hinder in self.hinder:
+        for hinder in self.hinder:  # sjekker om spilleren har truffet et hinder
             if self.spiller.sjekk_overlapp(hinder):
                 if hinder.farlig:
-                    print("u lose")
-                    print(f"Hjelp {self.counter}")
+                    print("Spillet er over")
+                    print(f"Du fikk følgende score: {self.counter.value}")
                     self.fortsett = False
             else:
                 hinder.farlig = True
 
-        # legg til death penalty for utenfor boundary
-        # add death screen
-        # add sprites
-        # add score oversikt ingamge?
+        if not (  # sjekker om spiller har truffet kanten av vinduet
+            0 <= self.spiller.x <= self.VINDU_BREDDE - self.spiller.BREDDE
+        ) or not (0 <= self.spiller.y <= self.VINDU_HOYDE - self.spiller.HØYDE):
+            print("Spillet er over")
+            print(f"Du fikk følgende score: {self.counter.value}")
+            self.fortsett = False
 
     @staticmethod
     def tegn_bokser(*args: Boks):
+        """Metode for å tegne alle boks-objekter i spillet"""
         for boks in args:
             boks.tegn()
 
     def tegn(self):
+        """Metode for å tegne spillets nåværende tilstand"""
         self.vindu.fill((0, 0, 0))
         self.tegn_bokser(self.spiller, *self.matbiter, *self.hinder)
+        self.counter.tegn()
         pg.display.update()
 
     def run(self):
+        """Metode for å kjøre spillet"""
         while self.fortsett:
             self.sjekk_events()
             self.oppdater_tilstand()
             self.tegn()
-            self.clock.tick(BILDER_PER_SEKUND)
+            self.clock.tick(self.BILDER_PER_SEKUND)
         pg.quit()
-
-    # Lager et Spiller-objekt
-    # spiller = Spiller(200, 200, 20, (255, 69, 0), vindu, 0.1)
-    # Lager et Hinder-objekt
-    # hinder = Hinder(
-    #     150, 250, 20, (0, 0, 255), vindu, rd.randint(1, 50) / 100, rd.randint(1, 50) / 100
-    # ) 0.08, 0.12)

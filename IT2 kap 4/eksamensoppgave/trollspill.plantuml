@@ -1,0 +1,58 @@
+@startuml TrollUML
+class Boks{
+    #x : int
+    #y : int
+    #bredde : int
+    #høyde : int 
+    #farge : tuple[int, int, int]
+    +tegn()
+    +sjekk_overlapp(boks: Boks)
+    #overlapp_intervall(start, slutt)
+}
+class Spiller{
+    #fart : float
+    #retning : int 
+    #farge : [0, 255, 0]
+    +endre_retning()
+    +gå_retning()
+    +øk_fart()
+}
+class Matbit{
+    #x : random.randint
+    #y : random.randint
+    #farge : [255, 255, 0]
+}
+class Hinder{
+    +farlig : bool
+    #farge : [155, 155, 155]
+}
+class Counter{
+    +value : int
+    #font : str
+    +tegn()
+}
+class App{
+    -VINDU_BREDDE : int
+    -VINDU_HOYDE : int
+    -BILDER_PER_SEKUND : int
+    #fortsett : bool
+    #vindu : pygame.Surface
+    #spiller : Spiller
+    #matbiter : list[Matbit]
+    #hinder : list[Hinder]
+    #counter : Counter 
+    +lag_matbit() -> Matbit
+    +sjekk_events()
+    +oppdater_tilstand()
+    +tegn()
+    +tegn_bokser()
+    +run()
+}
+Boks <|-down- Spiller
+Boks <|-down- Matbit
+Boks <|-down- Hinder
+App "1" *-up- "1" Spiller
+App "3" *-up- "1" Matbit
+App "any" o-up- "1" Hinder
+App "1" *-down- "1" Counter
+@enduml
