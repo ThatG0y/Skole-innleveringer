@@ -41,11 +41,11 @@ class App{
     #matbiter : list[Matbit]
     #hinder : list[Hinder]
     #counter : Counter 
-    +lag_matbit() -> Matbit
-    +sjekk_events()
-    +oppdater_tilstand()
-    +tegn()
-    +tegn_bokser()
+    #lag_matbit() -> Matbit
+    #sjekk_events()
+    #oppdater_tilstand()
+    #tegn()
+    #tegn_bokser()
     +run()
 }
 Boks <|-down- Spiller
