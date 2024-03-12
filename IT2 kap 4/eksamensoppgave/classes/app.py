@@ -23,7 +23,9 @@ class App:
         self.fortsett = True
 
         # generer nødvendige objekter
-        self.spiller = Spiller(250, 250, self.vindu)
+        self.spiller = Spiller(
+            int(self.VINDU_BREDDE / 2), int(self.VINDU_HOYDE / 2), self.vindu
+        )
         self.matbiter = []
         for _ in range(3):
             self.matbiter.append(self.lag_matbit(self.spiller, *self.matbiter))
