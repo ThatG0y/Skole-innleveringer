@@ -1,0 +1,36 @@
+@startuml Argsflix
+class App{
+    favoritter : Bucketlist
+    legg_til_bucketlist(index|title)
+    søk() -> Søkeresultat
+}
+class VisuellMedia{
+    title : str
+    år : int
+    imdb_id : str
+    poster : str
+    sett : bool
+}
+
+class Film{
+    lengde : int
+}
+
+class Serie{
+    antall_sesonger : int
+}
+class Bucketlist{
+    #media : list[VisuellMedia]
+    +legg_til()
+}
+
+class Søkeresultat{
+    film_liste : list[VisuellMedia]
+}
+
+VisuellMedia <|-down- Film
+VisuellMedia <|-down- Serie
+Bucketlist "any" *-up- Film
+Bucketlist "any" *-up- Serie
+App "1" *-right- Bucketlist
+@enduml
