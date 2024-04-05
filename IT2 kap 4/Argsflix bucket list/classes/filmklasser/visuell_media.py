@@ -4,3 +4,4 @@ class VisuellMedia:
         self.år = år
         self.imdb_id = imdb_id
         self.poster = poster
+        self.sett = False

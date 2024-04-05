@@ -14,6 +14,7 @@ class VisuellMedia{
 
 class Film{
     lengde : int
+    DVD : str
 }
 
 class Serie{
@@ -25,12 +26,23 @@ class Bucketlist{
 }
 
 class Søkeresultat{
-    film_liste : list[VisuellMedia]
+    title : str
+    år : int
+    imdb_id : str
+    poster : str
+}
+
+class Søk{
+    film_liste : list[Søkeresultat]
+    søk_title()
+    søk_id()
 }
 
 VisuellMedia <|-down- Film
 VisuellMedia <|-down- Serie
 Bucketlist "any" *-up- Film
 Bucketlist "any" *-up- Serie
+App "1" *-up- Søk
+Søk "any" *-up- Søkeresultat
 App "1" *-right- Bucketlist
 @enduml
