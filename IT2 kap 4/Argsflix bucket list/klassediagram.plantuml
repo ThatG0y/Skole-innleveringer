@@ -30,6 +30,7 @@ class Søkeresultat{
     år : int
     imdb_id : str
     poster : str
+    type : str
 }
 
 class Søk{
