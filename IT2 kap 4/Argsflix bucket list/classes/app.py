@@ -46,6 +46,11 @@ class App:
                     input("IMDB-iden til filmen du vil legge til favoritter: ")
                 )
             )
+            print(
+                "\nDu la til '{}' i din Bucketlist\n".format(
+                    self.søk.forrige_media.tittel
+                )
+            )
 
         elif valg == "4":  # Viser favoritter
             valg_1 = input("Vil du se filtrert versjon av favoritter y/n: ")

@@ -35,13 +35,22 @@ class Test:
 
     def _visuell_media_tests(self) -> None:
         try:
-            media = VisuellMedia("Dis/Connected", "2008", "tt1151327", "-", False)
+            media = VisuellMedia(
+                "Dis/Connected", "2008", "tt1151327", "-", "plot", False
+            )
         except TypeError:
             print("Ikke riktig antall argumenter for VisuellMedia")
 
         try:
             film = Film(
-                "Dis/Connected", "2008", "tt1151327", "-", "198 min", "DVD-ting", False
+                "Dis/Connected",
+                "2008",
+                "tt1151327",
+                "-",
+                "plot",
+                "198 min",
+                "DVD-ting",
+                False,
             )
         except TypeError:
             print("Ikke riktig antall argumenter for Film")

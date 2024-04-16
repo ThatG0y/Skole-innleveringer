@@ -10,10 +10,11 @@ class Serie(VisuellMedia):
         år: int,
         imdb_id: str,
         poster: str,
+        plot: str,
         antall_sesonger: int,
         sett: bool,
     ) -> None:
-        super().__init__(title, år, imdb_id, poster, sett)
+        super().__init__(title, år, imdb_id, poster, plot, sett)
         self.antall_sesonger = antall_sesonger
 
     def __str__(self) -> str:
@@ -28,6 +29,7 @@ class Serie(VisuellMedia):
         år = objekt["Year"]
         imdb_id = objekt["imdbID"]
         poster = objekt["Poster"]
+        plot = objekt["Plot"]
         antall_sesonger = objekt["totalSeasons"]
         sett = objekt["Sett"]
-        return cls(tittel, år, imdb_id, poster, antall_sesonger, sett)
+        return cls(tittel, år, imdb_id, poster, plot, antall_sesonger, sett)
