@@ -32,12 +32,21 @@ class Søk:
         url = f"https://www.omdbapi.com/?apikey={self.api_key}&s={tittel}"
         data = self.hent_data(url)
         self._lagre_søk(data, "søk")
+        if data == None:
+            self.forrige_søk = None
+            return None
+        else:
+            self.forrige_søk = []
+
         for film in data["Search"]:
             self.forrige_søk.append(self._lag_søkeresultat(film))
 
     def søk_id(self, id: str) -> dict:
         url = f"https://www.omdbapi.com/?apikey={self.api_key}&i={id}"
         data = self.hent_data(url)
+        if data == None:
+            self.forrige_media = None
+            return None
         self._lagre_søk(data, "media")
         data["Sett"] = False
         if data["Type"] in ("movie", "game"):

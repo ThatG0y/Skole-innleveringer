@@ -22,16 +22,20 @@ class App:
         while self.fortsett == True:
             self.valg()
 
-    def valg(self):
+    def valg(self) -> None:
         self.gui()
         valg = input("Hva vil du gjøre: ")
 
         if valg == "1":
             self.søk.søk_tittel(input("Tittelen du vil søke etter: "))
+            if self.søk.forrige_søk == None:
+                return None
             for resultat in self.søk.forrige_søk:
                 print(resultat)
         elif valg == "2":
             self.søk.søk_id(input("IMDB-iden til filmen du vil slå opp: "))
+            if self.søk.forrige_media == None:
+                return None
             print(self.søk.forrige_media)
         elif valg == "3":
             self.bucketlist.legg_til_favoritt(
