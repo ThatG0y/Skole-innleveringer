@@ -4,7 +4,6 @@ from classes.filmklasser.film import Film
 from classes.filmklasser.serie import Serie
 from utils.settings import API_KEY
 import json
-import os
 
 
 class Søk:
@@ -62,10 +61,7 @@ class Søk:
 
     def _lagre_søk(self, data: dict, navn: str) -> None:
         """Lagre informasjon om et film"""
-        adresse = os.path.join(
-            os.path.abspath(os.path.dirname("")),
-            r"lagring_søk\{}.json".format("".join(navn.split()).strip().lower()),
-        )
+        adresse = r"lagring_søk\{}.json".format("".join(navn.split()).strip().lower())
         with open(adresse, "w") as json_fil:
             json.dump(data, json_fil, indent=4)
 
