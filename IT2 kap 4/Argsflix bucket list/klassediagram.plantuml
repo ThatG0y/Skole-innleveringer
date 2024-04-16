@@ -1,42 +1,49 @@
 @startuml Argsflix
 class App{
-    favoritter : Bucketlist
-    legg_til_bucketlist(index|title)
-    søk() -> Søkeresultat
+    #favoritter : Bucketlist
+    #søk : Søk
+    +kjør()
 }
 class VisuellMedia{
-    title : str
-    år : int
-    imdb_id : str
-    poster : str
-    sett : bool
+    #title : str
+    #år : int
+    #imdb_id : str
+    #poster : str
+    #plot : str
+    #sett : bool
 }
 
 class Film{
-    lengde : int
-    DVD : str
+    #lengde : int
+    #DVD : str
 }
 
 class Serie{
-    antall_sesonger : int
+    #antall_sesonger : int
 }
 class Bucketlist{
-    #media : list[VisuellMedia]
-    +legg_til()
+    #favoritter : list[VisuellMedia]
+    +legg_til_favoritt()
+    +setup_bruker()
+    +marker_sett()
+    +fjern_favoritt()
+    -hent_bucketlist()
+    -lagre_bucketlist()
 }
 
 class Søkeresultat{
-    title : str
-    år : int
-    imdb_id : str
-    poster : str
-    type : str
+    #title : str
+    #år : int
+    #imdb_id : str
+    #poster : str
+    #type : str
 }
 
 class Søk{
-    film_liste : list[Søkeresultat]
-    søk_title()
-    søk_id()
+    +søk_title()
+    +søk_id()
+    +forrige_søk : list[Søkeresultat]
+    +forrige_media : VisuellMedia
 }
 
 VisuellMedia <|-down- Film
