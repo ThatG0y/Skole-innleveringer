@@ -2,6 +2,8 @@ from classes.filmklasser.visuell_media import VisuellMedia
 
 
 class Film(VisuellMedia):
+    """Klasse for å presentere OMDB-objekter med type "film" på"""
+
     def __init__(
         self,
         title: str,

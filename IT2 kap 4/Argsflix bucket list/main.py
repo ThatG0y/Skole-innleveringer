@@ -1,8 +1,9 @@
 from classes.app import App
-from utils.settings import API_KEY
+from classes.misc.tests import Test
 
 
 def main() -> None:
+    # test = Test()
     app = App()
     app.kjør()
 

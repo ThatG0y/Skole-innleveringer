@@ -1,29 +1,40 @@
 {
-    "Title": "Star Wars: The Idiotic Clone Trooper",
-    "Year": "2014\u2013",
-    "Rated": "TV-14",
-    "Released": "20 Sep 2014",
-    "Runtime": "N/A",
-    "Genre": "Animation, Action, Comedy",
-    "Director": "N/A",
-    "Writer": "Ryan Joseph Anderson",
-    "Actors": "Ryan Joseph Anderson",
-    "Plot": "When what seemingly was the birth of just another ordinary clone trooper occurs, Plo Koon and Kit Fisto realize their horribly false observations. The Idioitc Clone Trooper springs to life and starts a never-ending conflict that the ",
+    "Title": "Rogue One: A Star Wars Story",
+    "Year": "2016",
+    "Rated": "PG-13",
+    "Released": "16 Dec 2016",
+    "Runtime": "133 min",
+    "Genre": "Action, Adventure, Sci-Fi",
+    "Director": "Gareth Edwards",
+    "Writer": "Chris Weitz, Tony Gilroy, John Knoll",
+    "Actors": "Felicity Jones, Diego Luna, Alan Tudyk",
+    "Plot": "In a time of conflict, a group of unlikely heroes band together on a mission to steal the plans to the Death Star, the Empire's ultimate weapon of destruction.",
     "Language": "English",
     "Country": "United States",
-    "Awards": "N/A",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMDNjNzkzZWYtZGJhNi00YjEzLTkxMTItOWVjNjgyNGJiNjE3XkEyXkFqcGdeQXVyNTgwNTU4NTA@._V1_SX300.jpg",
+    "Awards": "Nominated for 2 Oscars. 24 wins & 85 nominations total",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMjEwMzMxODIzOV5BMl5BanBnXkFtZTgwNzg3OTAzMDI@._V1_SX300.jpg",
     "Ratings": [
         {
             "Source": "Internet Movie Database",
-            "Value": "6.9/10"
+            "Value": "7.8/10"
+        },
+        {
+            "Source": "Rotten Tomatoes",
+            "Value": "84%"
+        },
+        {
+            "Source": "Metacritic",
+            "Value": "65/100"
         }
     ],
-    "Metascore": "N/A",
-    "imdbRating": "6.9",
-    "imdbVotes": "23",
-    "imdbID": "tt5268892",
-    "Type": "series",
-    "totalSeasons": "1",
+    "Metascore": "65",
+    "imdbRating": "7.8",
+    "imdbVotes": "683,238",
+    "imdbID": "tt3748528",
+    "Type": "movie",
+    "DVD": "24 Mar 2017",
+    "BoxOffice": "$533,539,991",
+    "Production": "N/A",
+    "Website": "N/A",
     "Response": "True"
 }

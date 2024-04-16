@@ -1,4 +1,6 @@
 class Rating:
+    """Klasse for å enkapsulere film-ratings"""
+
     def __init__(self, navn: str, score: str) -> None:
         self.navn = navn
         self.score = score
@@ -8,3 +10,6 @@ class Rating:
 
     def vis_score(self):
         print(self)
+
+
+# Ubrukt enn så lenge, hvis implementert ville enkapsulert ratings i VisuellMedia

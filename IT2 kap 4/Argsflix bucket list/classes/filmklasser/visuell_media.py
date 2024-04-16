@@ -1,4 +1,6 @@
 class VisuellMedia:
+    """Klasse for å presentere OMDB-objekter på"""
+
     def __init__(
         self, tittel: str, år: str, imdb_id: str, poster: str, sett: bool
     ) -> None:

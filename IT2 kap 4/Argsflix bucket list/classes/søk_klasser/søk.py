@@ -8,12 +8,15 @@ import os
 
 
 class Søk:
+    """Klasse for å enkapsulere søkeinformasjon og søkefunksjonalitet"""
+
     def __init__(self) -> None:
         self.forrige_søk = []
         self.forrige_media = None
         self.api_key = API_KEY
 
-    def hent_data(self, url: str) -> dict:
+    def hent_data(self, url: str) -> dict | None:
+        """Metode for å hente data fra OMDB sin API"""
         resultat = req.get(url)
 
         if resultat.status_code == 200:  # sjekker at HTTP request til API gikk bra.
@@ -29,6 +32,7 @@ class Søk:
             return None
 
     def søk_tittel(self, tittel: str) -> None:
+        """Metode for å søke etter en film med nøkkelord/tittel"""
         url = f"https://www.omdbapi.com/?apikey={self.api_key}&s={tittel}"
         data = self.hent_data(url)
         self._lagre_søk(data, "søk")
@@ -41,7 +45,8 @@ class Søk:
         for film in data["Search"]:
             self.forrige_søk.append(self._lag_søkeresultat(film))
 
-    def søk_id(self, id: str) -> dict:
+    def søk_id(self, id: str) -> dict | None:
+        """Metode for å søke etter en film med IMDB-id"""
         url = f"https://www.omdbapi.com/?apikey={self.api_key}&i={id}"
         data = self.hent_data(url)
         if data == None:
@@ -55,7 +60,7 @@ class Søk:
             self.forrige_media = Serie.fra_dict(data)
         return data
 
-    def _lagre_søk(self, data, navn: str):
+    def _lagre_søk(self, data: dict, navn: str) -> None:
         """Lagre informasjon om et film"""
         adresse = os.path.join(
             os.path.abspath(os.path.dirname("")),
@@ -65,6 +70,7 @@ class Søk:
             json.dump(data, json_fil, indent=4)
 
     def _lag_søkeresultat(self, objekt: dict) -> Søkeresultat:
+        """Metode for å generere søkeresultater"""
         tittel = objekt["Title"]
         år = objekt["Year"]
         imdb_id = objekt["imdbID"]

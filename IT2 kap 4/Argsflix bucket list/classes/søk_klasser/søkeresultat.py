@@ -1,4 +1,6 @@
 class Søkeresultat:
+    """Klasse for å enkapsulere søkeinformasjon"""
+
     def __init__(
         self, tittel: str, år: str, imdb_id: str, poster: str, type: str
     ) -> None:
