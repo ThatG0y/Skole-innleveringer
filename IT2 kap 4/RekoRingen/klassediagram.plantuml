@@ -1,0 +1,33 @@
+@startuml RekoRingen
+class Produkt{
+    navn : str
+    kilopris : int
+}
+class Epler{
+    farge : str
+}
+class Mel{
+    best_før : datetime
+}
+class Bestilling{
+    kunde : Person
+    bestillings_oversikt : list[BestillingVare]
+    legg_til_vare() 
+    beregn_pris()
+}
+class BestillingVare{
+    vare : Produkt
+    antall_kg : int
+}
+class Person{
+    navn : str
+    mobil : int 
+}
+
+Produkt <|-down- Mel
+Produkt <|-down- Epler
+Produkt -left-* "1" BestillingVare
+BestillingVare -left-* "any" Bestilling
+Person -up-* "1" Bestilling
+
+@enduml
