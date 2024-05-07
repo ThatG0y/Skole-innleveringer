@@ -23,6 +23,8 @@ class App:
         print()
         print("1 Registrer ny bestilling")
         print("2 Vis total bestillingskostnad ")
+        print("3 Vis total bestillingskostnad (person)")
+        print("X Exit")
 
     def vis_vareoversikt(self):
         print(f"Produkter:")
@@ -39,7 +41,10 @@ class App:
                 print("error")
 
     def run(self) -> None:
-        pass
+        self.bruker_grensesnitt()
+        valg = input("Hva vil du gjøre? ")
+        if valg:
+            pass  # add mer
 
     def bestill(self):
         pass

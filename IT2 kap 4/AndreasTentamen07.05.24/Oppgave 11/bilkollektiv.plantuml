@@ -1,0 +1,51 @@
+@startuml bilkollektiv
+class Bil{
+    #type:str
+    #modell:str
+    #registreringsnummer:str
+    #pris:float
+    +hent_info()
+}
+class Elbil{
+    #Wh_per_km:int
+    #batteri:int
+    #energinivå:int
+}
+class Fossilbil{
+    #bensin_per_km:float
+    #tank:int
+    #drivstoff_mengde:int
+}
+class Bilkollektiv{
+    #navn : str
+    #lokasjon : str
+    #bilpark : list[Bil]
+    #reservasjonsliste : list[Reservasjon]
+    +vis_info()
+    +vis_biler()
+    +vis_reservasjoner()
+    +legg_til_bil()
+    +fjern_bil()
+    +reserver_bil()
+    +lever_bil()
+    +fjern_reservasjon()
+}
+class Medlem{
+    +navn : str
+    +email : str
+}
+class Reservasjon{
+    #bil : Bil
+    #medlem : Medlem
+    #dato : datetime
+    +vis_info()
+}
+
+Bil <|-up- Elbil
+Bil <|-up- Fossilbil
+Bilkollektiv "any" *-up- Bil
+Bilkollektiv "any" *-right- Reservasjon
+Reservasjon "1" *-up- Bil
+Reservasjon "1" *-right- Medlem
+
+@enduml
