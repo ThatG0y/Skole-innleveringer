@@ -3,8 +3,13 @@ import matplotlib.pyplot as plt
 
 
 def hent_data():
-    url = r"utgifter.csv"
-    return pd.read_csv(url, sep=";", skiprows=1)
+    url = r"Oppgave 10\utgifter.csv"
+    return pd.read_csv(url, sep=";", skiprows=1).fillna(0)
+
+
+def fiks(dato: str):
+    dag, måned, år = dato.split(".")
+    return int(måned)
 
 
 def deloppgave_a():
@@ -19,12 +24,26 @@ def deloppgave_a():
     print()
 
 
-def deloppgave_b_2():
-    data = hent_data()
-
-
 def deloppgave_b():
-    måneder = {1: "januar", 2: "februar", 3: "mars"}
+    data = hent_data()
+    måneder = {1: "Januar", 2: "Februar", 3: "Mars"}
+    for i in range(3):
+        print(f"{måneder[i + 1]}:")
+        mån_data = data[data["Dato"].map(fiks) == i + 1]
+        print(
+            f"Penger brukt på mat: {int(sum(mån_data[mån_data['Type']=='mat']['Beløp']))}"
+        )
+        print(
+            f"Penger brukt på klær: {int(sum(mån_data[mån_data['Type']=='klær']['Beløp']))}"
+        )
+        print(
+            f"Penger brukt på strøm: {int(sum(mån_data[mån_data['Type']=='strøm']['Beløp']))}"
+        )
+        print()
+
+
+def deloppgave_b_org():
+    måneder = {1: "Januar", 2: "Februar", 3: "Mars"}
     data = hent_data()
     for i in range(3):
         print(f"{måneder[i+1].title()}: ")
@@ -39,6 +58,22 @@ def deloppgave_b():
 
 
 def deloppgave_c():
+    data = hent_data()
+    plt.bar(
+        ["Januar", "Februar", "Mars"],
+        [
+            sum(data[data["Dato"].map(fiks) == i + 1][data["Type"] != "strøm"]["Beløp"])
+            for i in range(3)
+        ],
+        color=["red", "blue", "green"],
+    )
+    plt.title("Sum hverdagsavgifter")
+    plt.xlabel("Måned")
+    plt.ylabel("Antall kr")
+    plt.show()
+
+
+def deloppgave_c_org():
     måneder = {1: "januar", 2: "februar", 3: "mars"}
     data = hent_data()
     y_verdier = []
@@ -61,14 +96,14 @@ def deloppgave_c():
 def deloppgave_d():
     data = hent_data()
     fast_utgift = data[data["Type"] == "strøm"]
-    hverdagsutgift_1 = data[data["Type"] == "klær"]
-    hverdagsutgift_2 = data[data["Type"] == "mat"]
+    hverdagsutgift = data[data["Type"] != "strøm"]
     plt.pie(
         [
             fast_utgift["Beløp"].sum(),
-            hverdagsutgift_1["Beløp"].sum() + hverdagsutgift_2["Beløp"].sum(),
+            hverdagsutgift["Beløp"].sum(),
         ],
         labels=["Fast utgift", "Hverdagsutgift"],
+        autopct="%1.0f%%",
     )
     plt.title("Totale utgifter Januar-Mars")
     plt.show()
