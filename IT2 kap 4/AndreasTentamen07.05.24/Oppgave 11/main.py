@@ -1,9 +1,9 @@
-from klasser.bilkollektiv import Bilkollektiv
+from klasser.app import App
 
 
 def main() -> None:
-    kollektiv = Bilkollektiv("Oslo", "Oslo Sentrum")
-    kollektiv.run()
+    reservasjons_app = App()
+    reservasjons_app.run()
 
 
 if __name__ == "__main__":
