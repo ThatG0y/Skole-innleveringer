@@ -97,7 +97,7 @@ class Reservasjonssystem:
         # Oppdater lagret reservasjon-/bil-info
         print()
         self.fjern_reservasjon(reservasjon_ID)
-        # self.bilkollektiv.lagre_info()
+        self.bilkollektiv.lagre_info()
 
     def vis_ureserverte_biler(
         self, bruker: Bruker, start_tid: datetime, slutt_tid: datetime
