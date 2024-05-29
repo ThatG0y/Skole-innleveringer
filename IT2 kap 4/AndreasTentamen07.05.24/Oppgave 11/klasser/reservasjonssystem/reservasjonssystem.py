@@ -39,17 +39,25 @@ class Reservasjonssystem:
 
         self.id_til_r_nummer_dict[ny_reservasjon.reservasjon_ID] = (
             ny_reservasjon.registreringsnummer
-        )
-        self.reservasjoner_registreringsnummer[ny_reservasjon.registreringsnummer] = {}
+        )  # lagrer id til registreringsnummer par
+        if (
+            ny_reservasjon.registreringsnummer
+            not in self.reservasjoner_registreringsnummer
+        ):  # oppretter en nøkkel for registreringsnummeret hvis det ikke er registrert fra før
+            self.reservasjoner_registreringsnummer[
+                ny_reservasjon.registreringsnummer
+            ] = {}
         self.reservasjoner_registreringsnummer[ny_reservasjon.registreringsnummer][
             ny_reservasjon.reservasjon_ID
-        ] = ny_reservasjon
+        ] = ny_reservasjon  # oppretter bilreservasjonen under registreringsnummeret til bilen
 
     def fjern_reservasjon(self, reservasjon_ID: int) -> None:
         """Metode for å avbestille en registrert bilreservasjon"""
         self.reservasjoner_registreringsnummer[
             self.id_til_r_nummer_dict[reservasjon_ID]
-        ].pop(reservasjon_ID)
+        ].pop(
+            reservasjon_ID
+        )  # fjerner reservasjon fra begge dicts
         self.id_til_r_nummer_dict.pop(reservasjon_ID)
 
     def lever_bil(self, reservasjon_ID: int, km_kjørt: float) -> None:
@@ -105,8 +113,12 @@ class Reservasjonssystem:
         """Metode for hente ledige biler for et gitt tidsintervall"""
         ureserverte_biler = [
             registreringsnummer for registreringsnummer in self.bilkollektiv.biler
-        ]
-        for bil in ureserverte_biler:
+        ]  # henter alle registrerte biler
+        for (
+            bil
+        ) in (
+            ureserverte_biler
+        ):  # looper over listen, og sjekker for reserverte biler innenfor det gitte tidsintervallet
             if bil in self.reservasjoner_registreringsnummer:
                 for reservasjon in self.reservasjoner_registreringsnummer[bil].values():
                     simulert_reservasjon = Reservasjon(

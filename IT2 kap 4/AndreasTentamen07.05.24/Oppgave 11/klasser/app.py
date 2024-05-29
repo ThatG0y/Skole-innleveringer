@@ -46,13 +46,13 @@ class App:
                 self.reservasjonssystem.legg_til_reservasjon(reservasjon)
                 print(reservasjon)
             case "2":
-                if self.hent_reservasjoner():
+                if self.hent_reservasjoner():  # kjører bare hvis det fins reservasjoner
                     id = self.bekreft_gyldig_id()
                     self.reservasjonssystem.fjern_reservasjon(id)
                     print("Reservasjonen fjernet!")
                     print()
             case "3":
-                if self.hent_reservasjoner():
+                if self.hent_reservasjoner():  # kjører bare hvis det fins reservasjoner
                     id = self.bekreft_gyldig_id()
                     self.beregn_innleverings_kvittering(id)
             case "x":
