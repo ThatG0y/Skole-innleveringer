@@ -37,7 +37,8 @@ class App:
                     return
                 print("Dette er en oversikt over ledige biler:")
                 print()
-                print(ureserverte_biler)
+                for index, bil in enumerate(ureserverte_biler):
+                    print(f"{index+1}   {bil}")
                 print()
                 self.reservasjonsID += 1
                 reservasjon = self.generer_reservasjon(
@@ -89,18 +90,26 @@ class App:
     ) -> Reservasjon:
         """Metode for å generere en gyldig bilreservasjon"""
         while True:
+            valgt_bil = input("Hvilken bil vil du reservere? ")
+            try:
+                valgt_bil = int(valgt_bil)
+                registreringsnummer = ureserverte_biler[valgt_bil - 1]
+            except ValueError:
+                registreringsnummer = valgt_bil.upper()
+            except IndexError:
+                print("Ugyldig referansenummer, prøv igjen")
+                print()
+                continue
             try:
                 info = {
                     "ReservasjonsID": self.reservasjonsID,
                     "Bruker": self.bruker,
-                    "Registreringsnummer": input(
-                        "Hvilken bil vil du reservere? "
-                    ).upper(),
+                    "Registreringsnummer": registreringsnummer,
                     "Start tid": start_tid,
                     "Slutt tid": slutt_tid,
                 }
-                print()
                 assert info["Registreringsnummer"] in ureserverte_biler
+                print()
                 reservasjon = Reservasjon(**info)
                 return reservasjon
             except AssertionError:
@@ -118,8 +127,10 @@ class App:
             print("Det fins ingen reservasjoner for øyeblikket!")
             print()
             return False
-        print(reservasjoner)
-        print()
+        for reservasjon in reservasjoner:
+            print(f"ReservasjonsID: {reservasjon[0]}")
+            print(f"Reg.nummer:     {reservasjon[1]}")
+            print()
         return True
 
     def bekreft_gyldig_id(self) -> int:

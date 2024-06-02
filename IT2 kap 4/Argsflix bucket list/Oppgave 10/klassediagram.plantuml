@@ -1,0 +1,56 @@
+@startuml Klassediagram
+class App{
+    #favoritter : Bucketlist
+    #søk : Søk
+    +kjør()
+}
+class VisuellMedia{
+    #title : str
+    #år : int
+    #imdb_id : str
+    #poster : str
+    #plot : str
+    #sett : bool
+}
+
+class Film{
+    #lengde : int
+    #DVD : str
+}
+
+class Serie{
+    #antall_sesonger : int
+}
+class Bucketlist{
+    #favoritter : list[VisuellMedia]
+    +legg_til_favoritt()
+    +setup_bruker()
+    +marker_sett()
+    +fjern_favoritt()
+    -hent_bucketlist()
+    -lagre_bucketlist()
+}
+
+class Søkeresultat{
+    #title : str
+    #år : int
+    #imdb_id : str
+    #poster : str
+    #type : str
+}
+
+class Søk{
+    +søk_title()
+    +søk_id()
+    +forrige_søk : list[Søkeresultat]
+    +forrige_media : VisuellMedia
+}
+
+VisuellMedia <|-down- Film
+VisuellMedia <|-down- Serie
+Bucketlist "any" *-up- Film
+Bucketlist "any" *-up- Serie
+App "1" *-up- Søk
+Søk "any" *-up- Søkeresultat
+App "1" *-right- Bucketlist
+@enduml
